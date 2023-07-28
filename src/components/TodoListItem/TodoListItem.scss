@@ -1,0 +1,34 @@
+.todo__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 16px;
+
+  background-color: #262626;
+
+  border: 1px solid #333333;
+  border-radius: 8px;
+
+  &-check {
+    width: 17px;
+    height: 17px;
+    margin: 3px;
+
+    border: 2px solid #4EA8DE;
+    border-radius: 50%;
+  }
+
+  &-text {
+    font-size: 17px;
+    color: #F2F2F2;
+  }
+
+  &-delete {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

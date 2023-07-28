@@ -1,0 +1,8 @@
+.todo__controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  margin: -27px 0 64px;
+}

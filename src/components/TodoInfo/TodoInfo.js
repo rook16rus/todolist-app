@@ -1,4 +1,4 @@
-
+import "./TodoInfo.scss"
 
 const TodoInfo = () => {
     return (
@@ -7,7 +7,7 @@ const TodoInfo = () => {
                 <span>Всего задач</span>
                 <span className="todo__info-count">0</span>
             </div>
-            <div className="todo__info-all">
+            <div className="todo__info-completed">
                 <span>Выполнено</span>
                 <span className="todo__info-count">0</span>
             </div>

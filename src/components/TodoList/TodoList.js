@@ -1,6 +1,5 @@
 import TodoListItem from "../TodoListItem/TodoListItem";
-
-import clipboard from './clipboard.png'
+import TodoEmpty from "../TodoEmpty/TodoEmpty";
 
 const TodoList = () => {
     return (
@@ -8,13 +7,7 @@ const TodoList = () => {
             <ul className="todo__list">
                 <TodoListItem />
             </ul>
-            <div className="todo__empty">
-                <img className="todo__empty-img" width={56} height={56} src={clipboard} alt="Иконка"/>
-                <p className="todo__empty-text">
-                    <b>У вас еще нет зарегистрированных задач</b>
-                    Создавайте задачи и организуйте свои дела
-                </p>
-            </div>
+            <TodoEmpty />
         </>
     )
 }

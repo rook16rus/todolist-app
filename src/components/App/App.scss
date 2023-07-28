@@ -1,0 +1,24 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+    background-color: #0D0D0D;
+  }
+
+  &__logo {
+    width: 126px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+}
