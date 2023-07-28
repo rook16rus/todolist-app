@@ -1,8 +1,21 @@
+@import "../../media-mixin";
+
 .todo__controls {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 8px;
-  height: 54px;
   margin: -27px 0 64px;
+
+  @include mq('custom', 'max', 768) {
+    margin: 20px 0 40px;
+  }
+
+  @include mq('custom', 'max', 640) {
+    margin-bottom: 20px;
+  }
+
+  @include mq('custom', 'max', 360) {
+    grid-template-columns: 1fr;
+  }
 }

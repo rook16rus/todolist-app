@@ -1,6 +1,8 @@
 import TodoListItem from "../TodoListItem/TodoListItem";
 import TodoEmpty from "../TodoEmpty/TodoEmpty";
 
+import "./TodoList.scss"
+
 const TodoList = () => {
     return (
         <>

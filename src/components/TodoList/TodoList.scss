@@ -1,5 +1,11 @@
+@import "../../media-mixin";
+
 .todo__list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.2rem;
+  gap: 12px;
+
+  @include mq('custom', 'max', 640) {
+    gap: 8px;
+  }
 }

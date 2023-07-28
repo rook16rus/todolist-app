@@ -1,3 +1,5 @@
+@import "../../media-mixin";
+
 .todo__info {
   display: flex;
   align-items: center;
@@ -7,6 +9,10 @@
   font-weight: 700;
   font-size: 14px;
   line-height: normal;
+
+  @include mq('custom', 'max', 640) {
+    margin-bottom: 20px;
+  }
 
   &-all, &-completed {
     display: grid;

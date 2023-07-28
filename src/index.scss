@@ -1,4 +1,5 @@
 @import-normalize;
+@import "./media-mixin";
 
 *,
 *::before,
@@ -198,9 +199,13 @@ button:focus {
   margin: 0 auto;
   padding: 0 30px;
   @supports (width: max(20vw, 100px)) {
-
     padding-left: max(env(safe-area-inset-left, 1.4rem), 30px);
     padding-right: max(env(safe-area-inset-right, 1.4rem), 30px);
+  }
+
+  @include mq('custom', 'max', 640) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -216,6 +221,14 @@ button:focus {
 
   color: #808080;
 
+  @include mq('custom', 'max', 768) {
+    height: 45px;
+  }
+
+  @include mq('custom', 'max', 640) {
+    height: 40px;
+  }
+
   &::placeholder {
     color: #808080;
   }
@@ -224,6 +237,7 @@ button:focus {
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 52px;
   padding: 0 16px;
 
@@ -233,6 +247,15 @@ button:focus {
 
   font-size: 14px;
   color: #fff;
+
+  @include mq('custom', 'max', 768) {
+    height: 45px;
+  }
+
+  @include mq('custom', 'max', 640) {
+    height: 40px;
+    padding: 0 8px;
+  }
 
   svg {
     margin-left: 8px;

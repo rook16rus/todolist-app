@@ -1,3 +1,5 @@
+@import "../../media-mixin";
+
 .todo__item {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -11,6 +13,11 @@
   border: 1px solid #333333;
   border-radius: 8px;
 
+  @include mq('custom', 'max', 640) {
+    padding: 8px;
+    gap: 8px;
+  }
+
   &-check {
     width: 17px;
     height: 17px;
@@ -23,9 +30,18 @@
   &-text {
     font-size: 17px;
     color: #F2F2F2;
+
+    @include mq('custom', 'max', 640) {
+      grid-row: 2 / 3;
+      grid-column: span 3;
+    }
   }
 
   &-delete {
+    @include mq('custom', 'max', 640) {
+      margin-left: auto;
+    }
+
     svg {
       width: 24px;
       height: 24px;
