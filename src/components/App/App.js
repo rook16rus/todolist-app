@@ -43,6 +43,12 @@ const App = () => {
         })
     }
 
+    const onAddTask = (value) => {
+        setData(data => {
+            return [...data, {id: data.length + 1, text: value, checked: false}];
+        })
+    }
+
     const completedTasksCount = data.filter(item => item.checked).length
 
     return (
@@ -52,7 +58,7 @@ const App = () => {
             </header>
             <div className="todo__body">
                 <div className="container">
-                    <TodoControls/>
+                    <TodoControls onAddTask={onAddTask}/>
                     <TodoInfo tasksCount={data.length} completedTasksCount={completedTasksCount}/>
                     <TodoList data={data} onDeleteTask={onDeleteTask} onCheckTask={onCheckTask} />
                 </div>

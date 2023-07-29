@@ -1,9 +1,29 @@
+import { useState } from "react";
+
 import "./TodoControls.scss"
 
-const TodoControls = () => {
+const TodoControls = ({onAddTask}) => {
+    const [value, setValue] = useState('');
+
+    const onChangeInput = (e) => {
+        setValue(e.target.value);
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        onAddTask(value);
+        setValue('');
+    }
+
     return (
-        <form className="todo__controls">
-            <input className="todo__controls-input input" type="text" placeholder="Напишите новую задачу"/>
+        <form className="todo__controls" onSubmit={onSubmit}>
+            <input className="todo__controls-input input"
+                   onChange={onChangeInput}
+                   value={value}
+                   type="text"
+                   placeholder="Напишите новую задачу"
+            />
             <button className="todo__controls-button button">
                 <span>Добавить</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
