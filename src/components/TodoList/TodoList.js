@@ -3,9 +3,9 @@ import TodoEmpty from "../TodoEmpty/TodoEmpty";
 
 import "./TodoList.scss"
 
-const TodoList = ({data}) => {
-    const elements = data.map((item, index) => {
-        return <TodoListItem key={index} {...item} />
+const TodoList = ({data, onCheckTask, onDeleteTask}) => {
+    const elements = data.map((item) => {
+        return <TodoListItem key={item.id} {...item} onCheckTask={() => onCheckTask(item.id)} onDeleteTask={() => onDeleteTask(item.id)} />
     })
 
     const content = elements.length > 0 ?

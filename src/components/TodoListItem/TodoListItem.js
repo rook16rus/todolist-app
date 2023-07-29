@@ -1,15 +1,15 @@
 import "./TodoListItem.scss"
 
-const TodoListItem = ({text, checked}) => {
+const TodoListItem = ({text, checked, onCheckTask, onDeleteTask}) => {
     const itemClassName = checked ? "todo__item todo__item--checked" : "todo__item";
 
     return (
         <li className={itemClassName}>
-            <button className="todo__item-check"></button>
+            <button className="todo__item-check" onClick={onCheckTask}></button>
             <p className="todo__item-text">
                 {text}
             </p>
-            <button className="todo__item-delete">
+            <button className="todo__item-delete" onClick={onDeleteTask}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.2021 9.98548H12.8716V15.5073H14.2021V9.98548Z" fill="#808080"/>
                     <path d="M11.4624 9.98548H10.1318V15.5073H11.4624V9.98548Z" fill="#808080"/>
