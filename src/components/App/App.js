@@ -23,6 +23,8 @@ const App = () => {
         },
     ]);
 
+    const completedTasksCount = data.filter(item => item.checked).length
+
     return (
         <div className="todo">
             <header className="todo__header">
@@ -31,7 +33,7 @@ const App = () => {
             <div className="todo__body">
                 <div className="container">
                     <TodoControls/>
-                    <TodoInfo/>
+                    <TodoInfo tasksCount={data.length} completedTasksCount={completedTasksCount}/>
                     <TodoList data={data} />
                 </div>
             </div>
