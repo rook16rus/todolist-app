@@ -17,6 +17,20 @@
     padding: 8px;
     gap: 8px;
   }
+  
+  &--checked {
+    order: 1;
+
+    .todo__item-check {
+      background: #5E60CE url("./check-icon.svg") no-repeat center;
+      border-color: #5E60CE;
+    }
+    
+    .todo__item-text {
+      text-decoration: line-through;
+      color: #808080;
+    }
+  }
 
   &-check {
     width: 17px;

@@ -1,11 +1,13 @@
 import "./TodoListItem.scss"
 
-const TodoListItem = () => {
+const TodoListItem = ({text, checked}) => {
+    const itemClassName = checked ? "todo__item todo__item--checked" : "todo__item";
+
     return (
-        <li className="todo__item">
+        <li className={itemClassName}>
             <button className="todo__item-check"></button>
             <p className="todo__item-text">
-                Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+                {text}
             </p>
             <button className="todo__item-delete">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

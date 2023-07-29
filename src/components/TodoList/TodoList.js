@@ -3,14 +3,23 @@ import TodoEmpty from "../TodoEmpty/TodoEmpty";
 
 import "./TodoList.scss"
 
-const TodoList = () => {
+const TodoList = ({data}) => {
+    const elements = data.map((item, index) => {
+        return <TodoListItem key={index} {...item} />
+    })
+
+    const content = elements.length > 0 ?
+                    <View elements={elements} /> :
+                    <TodoEmpty />
+
+    return content
+}
+
+const View = ({elements}) => {
     return (
-        <>
-            <ul className="todo__list">
-                <TodoListItem />
-            </ul>
-            <TodoEmpty />
-        </>
+        <ul className="todo__list">
+            {elements}
+        </ul>
     )
 }
 
