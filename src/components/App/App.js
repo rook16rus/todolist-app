@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import TodoControls from "../TodoControls/TodoControls";
 import TodoInfo from "../TodoInfo/TodoInfo";
@@ -8,44 +8,43 @@ import './App.scss'
 import logo from './logo.svg';
 
 const App = () => {
-    const [data, setData] = useState([
-        {
-            id: 1,
-            text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-            checked: true
-        },
-        {
-            id: 2,
-            text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer. Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-            checked: false
-        },
-        {
-            id: 3,
-            text: "Integer urna interdum massa libero auctor.",
-            checked: false
-        },
-    ]);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const dataFromLocalStorage = JSON.parse(localStorage.getItem("data"));
+        setData(dataFromLocalStorage);
+    }, [])
 
     const onDeleteTask = (id) => {
-        setData(data => data.filter(item => item.id !== id))
+        setData(data => {
+            const newArray = data.filter(item => item.id !== id);
+            localStorage.setItem("data", JSON.stringify(newArray));
+
+            return newArray
+        })
     }
 
     const onCheckTask = (id) => {
         setData(data => {
-
-            return data.map(item => {
+            const newArray = data.map(item => {
                 if (item.id === id) {
                     return {...item, checked: !item.checked}
                 }
 
                 return item;
             })
+
+            localStorage.setItem("data", JSON.stringify(newArray));
+            return newArray
         })
     }
 
     const onAddTask = (value) => {
         setData(data => {
-            return [...data, {id: data.length + 1, text: value, checked: false}];
+            const newArray = [...data, {id: data.length + 1, text: value, checked: false}];
+
+            localStorage.setItem("data", JSON.stringify(newArray));
+            return newArray;
         })
     }
 
