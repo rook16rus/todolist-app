@@ -31,4 +31,9 @@
     display: flex;
     flex-direction: column;
   }
+
+  &__status-message {
+    font-size: 36px;
+    text-align: center;
+  }
 }

@@ -11,12 +11,20 @@ import logo from './logo.svg';
 
 const App = () => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
     const { request } = useHttp();
 
     useEffect(() => {
         request("http://localhost:3001/tasks")
             .then(tasks => {
+                setLoading(false);
                 setData(tasks)
+            })
+            .catch(() => {
+                setLoading(false);
+                setError(true);
             })
     }, [])
 
@@ -70,7 +78,7 @@ const App = () => {
                 <div className="container">
                     <TodoControls onAddTask={onAddTask}/>
                     <TodoInfo tasksCount={data.length} completedTasksCount={completedTasksCount}/>
-                    <TodoList data={data} onDeleteTask={onDeleteTask} onCheckTask={onCheckTask} />
+                    <TodoList data={data} error={error} loading={loading} onDeleteTask={onDeleteTask} onCheckTask={onCheckTask} />
                 </div>
             </div>
         </div>

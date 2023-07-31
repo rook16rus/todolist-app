@@ -3,16 +3,24 @@ import TodoEmpty from "../TodoEmpty/TodoEmpty";
 
 import "./TodoList.scss"
 
-const TodoList = ({data, onCheckTask, onDeleteTask}) => {
+const TodoList = ({data, loading, error, onCheckTask, onDeleteTask}) => {
     const elements = data.map((item) => {
         return <TodoListItem key={item.id} {...item} onCheckTask={() => onCheckTask(item.id)} onDeleteTask={() => onDeleteTask(item.id)} />
     })
 
-    const content = elements.length > 0 ?
-                    <View elements={elements} /> :
-                    <TodoEmpty />
+    const errorMessage = error ? <h2 className="todo__status-message">Ошибка</h2> : null;
+    const loadingMessage = loading ? <h2 className="todo__status-message">Загрузка...</h2> : null;
+    const emptyContent = !loading && !error && elements.length < 1 ? <TodoEmpty /> : null;
+    const content = <View elements={elements} />;
 
-    return content
+    return (
+        <>
+            {errorMessage}
+            {loadingMessage}
+            {emptyContent}
+            {content}
+        </>
+    )
 }
 
 const View = ({elements}) => {

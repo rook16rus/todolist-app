@@ -12,7 +12,6 @@ export const useHttp = () => {
 
             return data;
         } catch (e) {
-            console.log(1)
             throw e;
         }
     };
