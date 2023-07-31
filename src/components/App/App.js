@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHttp } from "../../hooks/useHttp";
 
 import TodoControls from "../TodoControls/TodoControls";
 import TodoInfo from "../TodoInfo/TodoInfo";
@@ -9,43 +10,50 @@ import logo from './logo.svg';
 
 const App = () => {
     const [data, setData] = useState([]);
+    const { request } = useHttp();
 
     useEffect(() => {
-        const dataFromLocalStorage = JSON.parse(localStorage.getItem("data"));
-        setData(dataFromLocalStorage);
+        request("http://localhost:3001/tasks")
+            .then(tasks => {
+                setData(tasks)
+            })
     }, [])
 
     const onDeleteTask = (id) => {
-        setData(data => {
-            const newArray = data.filter(item => item.id !== id);
-            localStorage.setItem("data", JSON.stringify(newArray));
-
-            return newArray
-        })
+        request(`http://localhost:3001/tasks/${id}`, "DELETE")
+            .then(() => {
+                setData(data => {
+                    const newArray = data.filter(item => item.id !== id);
+                    return newArray
+                })
+            })
     }
 
     const onCheckTask = (id) => {
-        setData(data => {
-            const newArray = data.map(item => {
-                if (item.id === id) {
-                    return {...item, checked: !item.checked}
-                }
+        const foundedTask = data.find((item) => item.id === id);
 
-                return item;
+        request(
+            `http://localhost:3001/tasks/${id}`,
+            "PUT",
+            JSON.stringify({...foundedTask, checked: !foundedTask.checked})
+        ).then(() => {
+            setData(data => {
+                return data.map(item => {
+                    if (item.id === id) {
+                        return {...item, checked: !item.checked}
+                    }
+
+                    return item;
+                })
             })
-
-            localStorage.setItem("data", JSON.stringify(newArray));
-            return newArray
         })
     }
 
     const onAddTask = (value) => {
-        setData(data => {
-            const newArray = [...data, {id: data.length + 1, text: value, checked: false}];
-
-            localStorage.setItem("data", JSON.stringify(newArray));
-            return newArray;
-        })
+        request("http://localhost:3001/tasks", "POST", JSON.stringify({id: data.length + 1, text: value, checked: false}))
+            .then(() => {
+                setData(data => [...data, {id: data.length + 1, text: value, checked: false}])
+            })
     }
 
     const completedTasksCount = data.filter(item => item.checked).length
