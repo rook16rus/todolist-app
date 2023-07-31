@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHttp } from "../../hooks/useHttp";
+import {v4 as uuidv4} from 'uuid';
 
 import TodoControls from "../TodoControls/TodoControls";
 import TodoInfo from "../TodoInfo/TodoInfo";
@@ -50,7 +51,9 @@ const App = () => {
     }
 
     const onAddTask = (value) => {
-        request("http://localhost:3001/tasks", "POST", JSON.stringify({id: data.length + 1, text: value, checked: false}))
+        const id = uuidv4();
+
+        request("http://localhost:3001/tasks", "POST", JSON.stringify({id, text: value, checked: false}))
             .then(() => {
                 setData(data => [...data, {id: data.length + 1, text: value, checked: false}])
             })
