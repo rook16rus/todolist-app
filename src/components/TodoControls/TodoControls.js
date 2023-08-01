@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { addTask } from "../../actions/actions";
+import { useHttp } from "../../hooks/useHttp";
 
 import "./TodoControls.scss"
 
-const TodoControls = ({onAddTask}) => {
+const TodoControls = () => {
     const [value, setValue] = useState('');
+    const dispatch = useDispatch();
+    const { request } = useHttp();
 
     const onChangeInput = (e) => {
         setValue(e.target.value);
@@ -12,7 +18,13 @@ const TodoControls = ({onAddTask}) => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        onAddTask(value);
+        const id = uuidv4();
+
+        request("http://localhost:3001/tasks", "POST", JSON.stringify({id, text: value, checked: false}))
+            .then(() => {
+                dispatch(addTask({id, text: value, checked: false}))
+            })
+
         setValue('');
     }
 
