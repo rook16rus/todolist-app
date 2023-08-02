@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/useHttp";
 
-import TodoListItem from "../TodoListItem/TodoListItem";
-import TodoEmpty from "../TodoEmpty/TodoEmpty";
+import {ITask, tasksState} from "../../types/types";
+
+import TodoListItem from "../TodoListItem/TodoListItem.tsx";
+import TodoEmpty from "../TodoEmpty/TodoEmpty.jsx";
 
 import "./TodoList.scss"
 import {checkTask, deleteTask, tasksFetched, tasksFetching, tasksFetchingError} from "../../actions/actions";
 
 const TodoList = () => {
-    const {tasks, tasksLoadingStatus} = useSelector(state => state);
+    const {tasks, tasksLoadingStatus} = useSelector((state) => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -25,14 +27,14 @@ const TodoList = () => {
             })
     }, [])
 
-    const onDeleteTask = (id) => {
+    const onDeleteTask = (id: string): void => {
         request(`http://localhost:3001/tasks/${id}`, "DELETE")
             .then(() => {
                 dispatch(deleteTask(id));
             })
     }
 
-    const onCheckTask = (id) => {
+    const onCheckTask = (id: string): void => {
         const foundedTask = tasks.find((item) => item.id === id);
 
         request(
@@ -44,8 +46,14 @@ const TodoList = () => {
         })
     }
 
-    const elements = tasks.map((item) => {
-        return <TodoListItem key={item.id} {...item} onCheckTask={() => onCheckTask(item.id)} onDeleteTask={() => onDeleteTask(item.id)} />
+    const elements = tasks.map((item: ITask): React.ReactNode => {
+        return (
+            <TodoListItem {...item}
+                          key={item.id}
+                          onCheckTask={() => onCheckTask(item.id)}
+                          onDeleteTask={() => onDeleteTask(item.id)}
+            />
+        )
     })
 
     if (tasksLoadingStatus === "loading") {
@@ -59,7 +67,7 @@ const TodoList = () => {
     return <View elements={elements} />;
 }
 
-const View = ({elements}) => {
+const View:React.FC<{elements: Array<React.ReactNode>}> = ({elements}) => {
     return (
         <ul className="todo__list">
             {elements}

@@ -11,11 +11,11 @@ const TodoControls = () => {
     const dispatch = useDispatch();
     const { request } = useHttp();
 
-    const onChangeInput = (e) => {
+    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(e.target.value);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
 
         const id = uuidv4();

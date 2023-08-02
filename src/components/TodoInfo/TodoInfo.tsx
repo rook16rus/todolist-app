@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 
+import {ITask, tasksState} from "../../types/types"
+
 import "./TodoInfo.scss"
 
 const TodoInfo = () => {
-    const tasks = useSelector(state => state.tasks);
-    const completedTasksCount = tasks.filter(item => item.checked).length
+    const tasks = useSelector((state: tasksState): Array<ITask> => state.tasks);
+    const completedTasksCount: number = tasks.filter(item => item.checked).length
 
     return (
         <div className="todo__info">

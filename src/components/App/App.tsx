@@ -1,6 +1,6 @@
-import TodoControls from "../TodoControls/TodoControls";
-import TodoInfo from "../TodoInfo/TodoInfo";
-import TodoList from "../TodoList/TodoList";
+import TodoControls from "../TodoControls/TodoControls.tsx";
+import TodoInfo from "../TodoInfo/TodoInfo.tsx";
+import TodoList from "../TodoList/TodoList.tsx";
 
 import './App.scss'
 import logo from './logo.svg';

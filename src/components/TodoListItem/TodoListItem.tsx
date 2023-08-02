@@ -1,6 +1,13 @@
 import "./TodoListItem.scss"
 
-const TodoListItem = ({text, checked, onCheckTask, onDeleteTask}) => {
+type TodoListItemProps = {
+    text: string,
+    checked: true,
+    onCheckTask: () => void,
+    onDeleteTask: () => void
+}
+
+const TodoListItem = ({text, checked, onCheckTask, onDeleteTask}: TodoListItemProps) => {
     const itemClassName = checked ? "todo__item todo__item--checked" : "todo__item";
 
     return (
