@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { addTask } from "../../actions/actions.ts";
-import { useHttp } from "../../hooks/useHttp";
+import { useHttp } from "../../hooks/useHttp.ts";
 
 import "./TodoControls.scss"
 
@@ -17,6 +17,8 @@ const TodoControls = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
+
+        if (value === '') return
 
         const id = uuidv4();
 

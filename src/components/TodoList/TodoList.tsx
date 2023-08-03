@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHttp } from "../../hooks/useHttp";
+import { useHttp } from "../../hooks/useHttp.ts";
 
 import {ITask} from "../../types/types";
 
@@ -11,7 +11,8 @@ import "./TodoList.scss"
 import {checkTask, deleteTask, tasksFetched, tasksFetching, tasksFetchingError} from "../../actions/actions.ts";
 
 const TodoList = () => {
-    const {tasks, tasksLoadingStatus} = useSelector((state) => state);
+    const tasks = useSelector(state => state.tasks);
+    const tasksLoadingStatus = useSelector(state => state.tasksLoadingStatus)
     const dispatch = useDispatch();
     const { request } = useHttp();
 
