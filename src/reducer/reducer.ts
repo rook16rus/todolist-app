@@ -1,6 +1,8 @@
-const initialState = {
+import { tasksState } from "../types/types";
+
+const initialState: tasksState = {
     tasks: [],
-    tasksLoadingStatus: "idle"
+    tasksLoadingStatus: "loading"
 }
 
 const reducer = (state = initialState, action) => {

@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHttp } from "../../hooks/useHttp";
 
-import {ITask, tasksState} from "../../types/types";
+import {ITask} from "../../types/types";
 
 import TodoListItem from "../TodoListItem/TodoListItem.tsx";
 import TodoEmpty from "../TodoEmpty/TodoEmpty.jsx";
 
 import "./TodoList.scss"
-import {checkTask, deleteTask, tasksFetched, tasksFetching, tasksFetchingError} from "../../actions/actions";
+import {checkTask, deleteTask, tasksFetched, tasksFetching, tasksFetchingError} from "../../actions/actions.ts";
 
 const TodoList = () => {
     const {tasks, tasksLoadingStatus} = useSelector((state) => state);
