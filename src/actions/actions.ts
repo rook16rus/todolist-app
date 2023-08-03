@@ -39,3 +39,10 @@ export const checkTask = (id: string): TaskActionTypes => {
         payload: id
     }
 }
+
+export const filterTask = (filter: string): TaskActionTypes => {
+    return  {
+        type: "FILTER_TASK",
+        payload: filter
+    }
+}

@@ -12,7 +12,8 @@ import {checkTask, deleteTask, tasksFetched, tasksFetching, tasksFetchingError} 
 
 const TodoList = () => {
     const tasks = useSelector(state => state.tasks);
-    const tasksLoadingStatus = useSelector(state => state.tasksLoadingStatus)
+    const tasksLoadingStatus = useSelector(state => state.tasksLoadingStatus);
+    const tasksFilter = useSelector(state => state.tasksFilter)
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -47,7 +48,18 @@ const TodoList = () => {
         })
     }
 
-    const elements = tasks.map((item: ITask): React.ReactNode => {
+    const filterTasks = (tasks) => {
+        switch (tasksFilter) {
+            case "all":
+                return tasks
+            case "completed":
+                return tasks.filter(task => task.checked)
+            default:
+                return tasks
+        }
+    }
+
+    const elements = filterTasks(tasks).map((item: ITask): React.ReactNode => {
         return (
             <TodoListItem {...item}
                           key={item.id}

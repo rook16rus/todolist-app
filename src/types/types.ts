@@ -6,7 +6,8 @@ export type ITask = {
 
 export type tasksState = {
     tasks: Array<ITask>,
-    tasksLoadingStatus: string
+    tasksLoadingStatus: string,
+    tasksFilter: string
 }
 
 type tasksFetchingAction = {
@@ -37,4 +38,9 @@ type checkTaskAction = {
     payload: string
 }
 
-export type TaskActionTypes = tasksFetchingAction | tasksFetchedAction | tasksFetchingErrorAction | addTaskAction | deleteTaskAction | checkTaskAction
+type filterTaskAction = {
+    type: "FILTER_TASK",
+    payload: string
+}
+
+export type TaskActionTypes = tasksFetchingAction | tasksFetchedAction | tasksFetchingErrorAction | addTaskAction | deleteTaskAction | checkTaskAction | filterTaskAction

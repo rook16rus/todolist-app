@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { addTask } from "../../actions/actions.ts";
+import { addTask, filterTask } from "../../actions/actions.ts";
 import { useHttp } from "../../hooks/useHttp.ts";
 
 import "./TodoControls.scss"
@@ -30,6 +30,10 @@ const TodoControls = () => {
         setValue('');
     }
 
+    const onFilterChecked = (filter: string): void => {
+        dispatch(filterTask(filter));
+    }
+
     return (
         <form className="todo__controls" onSubmit={onSubmit}>
             <input className="todo__controls-input input"
@@ -51,6 +55,18 @@ const TodoControls = () => {
                         </clipPath>
                     </defs>
                 </svg>
+            </button>
+            <button className="todo__controls-filter-button button"
+                    type="button"
+                    onClick={() => onFilterChecked("all")}
+            >
+                <span>Все</span>
+            </button>
+            <button className="todo__controls-filter-button button"
+                    type="button"
+                    onClick={() => onFilterChecked("completed")}
+            >
+                <span>Только выполненые</span>
             </button>
         </form>
     )

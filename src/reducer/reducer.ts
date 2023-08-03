@@ -2,7 +2,8 @@ import { tasksState } from "../types/types";
 
 const initialState: tasksState = {
     tasks: [],
-    tasksLoadingStatus: "loading"
+    tasksLoadingStatus: "loading",
+    tasksFilter: "all"
 }
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +44,11 @@ const reducer = (state = initialState, action) => {
 
                     return task;
                 })
+            }
+        case "FILTER_TASK":
+            return {
+                ...state,
+                tasksFilter: action.payload
             }
         default:
             return state
