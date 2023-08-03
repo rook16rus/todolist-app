@@ -1,5 +1,5 @@
 export const useHttp = () => {
-    const request = async (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) => {
+    const request = async (url: string, method: string = 'GET', body = null, headers = {'Content-Type': 'application/json'}): Promise<any> => {
 
         try {
             const response = await fetch(url, {method, body, headers});
